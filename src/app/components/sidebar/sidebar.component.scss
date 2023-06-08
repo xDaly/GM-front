@@ -1,0 +1,16 @@
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  background-color: rgb(233, 233, 233);
+  z-index: 10;
+  left: -300px;
+  transition: all .5s;
+}
+
+.open {
+    box-shadow: 3px 0px 10px black;
+  left: 0;
+  transition: all .5s;
+
+}
