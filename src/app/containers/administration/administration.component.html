@@ -1,0 +1,286 @@
+<div class="m-5">
+  <button type="button" class="btn btn-primary m-3" (click)="open(content);gestForm.reset()">
+    <i class="fa-solid fa-plus"></i> Ajouter
+  </button>
+
+  <table
+    class="table table-striped"
+    style="border: 1px solid grey; border-radius: 50px"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Mot de passe</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let gestionnaire of gestionnaires">
+        <td>{{ gestionnaire.userName }}</td>
+        <td>{{ gestionnaire.password }}</td>
+        <td>{{ gestionnaire.Profil.nom }}</td>
+        <td>{{ gestionnaire.Profil.prenom }}</td>
+        <td>{{ gestionnaire.Profil.email }}</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <!-- <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a> -->
+            <a (click)="open(update);selectGestionnaire(gestionnaire.id)" class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a
+              (click)=" selectedIdToDel = gestionnaire.id; open(delete)"
+              class="pointer"
+              style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter employer</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="gestForm">
+      <input
+        class="form-control mb-2"
+        type="text"
+        formControlName="nom"
+        placeholder="Nom"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="gestForm.controls.nom.errors?.['required'] && gestForm.controls.nom.dirty"
+      >
+        nom est obligatoire
+      </p>
+      <input
+        class="form-control mb-2"
+        type="text"
+        formControlName="prenom"
+        placeholder="Prenom"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="gestForm.controls.prenom.errors?.['required'] && gestForm.controls.prenom.dirty"
+      >
+        prenom est obligatoire
+      </p>
+
+      <input
+        class="form-control mb-2"
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="gestForm.controls.email.errors?.['email'] && gestForm.controls.email.dirty"
+      >
+        merci d'entrer un email valid
+      </p>
+      <p
+        class="text-danger"
+        *ngIf="gestForm.controls.email.errors?.['required'] && gestForm.controls.email.dirty"
+      >
+        email est obligatoire
+      </p>
+
+      <input
+        class="form-control mb-2"
+        type="text"
+        formControlName="userName"
+        placeholder="Username"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="
+          gestForm.controls.userName.errors && gestForm.controls.userName.dirty
+        "
+      >
+        username est obligatoire
+      </p>
+
+      <input
+        class="form-control mb-2"
+        type="text"
+        formControlName="password"
+        placeholder="Mot de passe"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="
+          gestForm.controls.password.errors && gestForm.controls.password.dirty
+        "
+      >
+        password est obligatoire
+      </p>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click'); createGestionnaire()"
+    >
+      Ajouter
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #delete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Supprimer Gestinnaire</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body d-flex justify-content-around">
+    <button
+      type="button"
+      style="flex: 0.8"
+      class="btn btn-outline-danger m-1"
+      (click)="modal.close('Save click'); deleteGestionnaire(selectedIdToDel)"
+    >
+      Supprimer
+    </button>
+    <button
+      type="button"
+      style="flex: 0.8"
+      class="btn btn-outline-dark m-1"
+      (click)="modal.close('Save click')"
+    >
+      Non
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #update let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Modifier employer {{nom?.value}}</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="gestForm">
+      <input
+        class="form-control mb-2"
+        type="text"
+        formControlName="nom"
+        placeholder="Nom"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="gestForm.controls.nom.errors?.['required'] && gestForm.controls.nom.dirty"
+      >
+        nom est obligatoire
+      </p>
+      <input
+        class="form-control mb-2"
+        type="text"
+        formControlName="prenom"
+        placeholder="Prenom"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="gestForm.controls.prenom.errors?.['required'] && gestForm.controls.prenom.dirty"
+      >
+        prenom est obligatoire
+      </p>
+
+      <input
+        class="form-control mb-2"
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="gestForm.controls.email.errors?.['email'] && gestForm.controls.email.dirty"
+      >
+        merci d'entrer un email valid
+      </p>
+      <p
+        class="text-danger"
+        *ngIf="gestForm.controls.email.errors?.['required'] && gestForm.controls.email.dirty"
+      >
+        email est obligatoire
+      </p>
+
+      <input
+        class="form-control mb-2"
+        type="text"
+        formControlName="userName"
+        placeholder="Username"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="
+          gestForm.controls.userName.errors && gestForm.controls.userName.dirty
+        "
+      >
+        username est obligatoire
+      </p>
+
+      <input
+        class="form-control mb-2"
+        type="text"
+        formControlName="password"
+        placeholder="Mot de passe"
+        aria-label="default input example"
+      />
+      <p
+        class="text-danger"
+        *ngIf="
+          gestForm.controls.password.errors && gestForm.controls.password.dirty
+        "
+      >
+        password est obligatoire
+      </p>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click'); createGestionnaire()"
+    >
+      Modifier
+    </button>
+  </div>
+</ng-template>

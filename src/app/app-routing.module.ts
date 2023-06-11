@@ -35,6 +35,20 @@ const routes: Routes = [
             (c) => c.UserManagerComponent
           ),
       },
+      {
+        path: 'gestion-gestionnaire',
+        loadComponent: () =>
+          import('./containers/gest-manager/gest-manager.component').then(
+            (c) => c.GestManagerComponent
+          ),
+      },
+      {
+        path: 'administration',
+        loadComponent: () =>
+          import('./containers/administration/administration.component').then(
+            (c) => c.AdministrationComponent
+          ),
+      },
     ],
   },
   {
