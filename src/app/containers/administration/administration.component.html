@@ -1,5 +1,9 @@
 <div class="m-5">
-  <button type="button" class="btn btn-primary m-3" (click)="open(content);gestForm.reset()">
+  <button
+    type="button"
+    class="btn btn-primary m-3"
+    (click)="open(content); gestForm.reset()"
+  >
     <i class="fa-solid fa-plus"></i> Ajouter
   </button>
 
@@ -33,11 +37,18 @@
             <!-- <a class="pointer" style="color: green"
               ><i class="fa-solid fa-eye"></i
             ></a> -->
-            <a (click)="open(update);selectGestionnaire(gestionnaire.id)" class="pointer" style="color: orange"
+            <a
+              (click)="
+                open(update);
+                selectGestionnaire(gestionnaire.id);
+                selectedId = gestionnaire.Profil.id
+              "
+              class="pointer"
+              style="color: orange"
               ><i class="fa-solid fa-pen"></i
             ></a>
             <a
-              (click)=" selectedIdToDel = gestionnaire.id; open(delete)"
+              (click)="selectedId = gestionnaire.Profil.id; open(delete)"
               class="pointer"
               style="color: red"
               ><i class="fa-solid fa-trash"></i
@@ -144,6 +155,7 @@
   <div class="modal-footer">
     <button
       type="button"
+      [disabled]="!gestForm.valid || !gestForm.dirty"
       class="btn btn-outline-dark"
       (click)="modal.close('Save click'); createGestionnaire()"
     >
@@ -167,7 +179,7 @@
       type="button"
       style="flex: 0.8"
       class="btn btn-outline-danger m-1"
-      (click)="modal.close('Save click'); deleteGestionnaire(selectedIdToDel)"
+      (click)="modal.close('Save click'); deleteGestionnaire(selectedId)"
     >
       Supprimer
     </button>
@@ -184,7 +196,9 @@
 
 <ng-template #update let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Modifier employer {{nom?.value}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">
+      Modifier employer {{ nom?.value }}
+    </h4>
     <button
       type="button"
       class="btn-close"
@@ -278,7 +292,7 @@
     <button
       type="button"
       class="btn btn-outline-dark"
-      (click)="modal.close('Save click'); createGestionnaire()"
+      (click)="modal.close('Save click'); updateGestionnaire()"
     >
       Modifier
     </button>

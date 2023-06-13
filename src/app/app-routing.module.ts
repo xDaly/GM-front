@@ -29,6 +29,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'gestion-materiel',
+        loadComponent: () =>
+          import('./containers/asset-manager/asset-manager.component').then(
+            (c) => c.AssetManagerComponent
+          ),
+      },
+      {
         path: 'gestion-utilisateurs',
         loadComponent: () =>
           import('./containers/user-manager/user-manager.component').then(

@@ -3,10 +3,10 @@
     <i class="fa-regular fa-circle-xmark fa-2xl pointer" (click)="closeSidebar()"></i>
   </div>
   <div class="d-flex flex-column h-100 justify-content-center">
-    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/routePath']" routerLinkActive="router-link-active" >Acceuil</button>
-    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/routePath']" routerLinkActive="router-link-active" >Consultation</button>
-    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/routePath']" routerLinkActive="router-link-active" >Suivi & traitement</button>
-    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/routePath']" routerLinkActive="router-link-active" >Statistique</button>
-    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/administration']" routerLinkActive="router-link-active" >Administration</button>
+    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/']" routerLinkActive="router-link-active" (click)="closeSidebar()" >Acceuil</button>
+    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/consultation']" routerLinkActive="router-link-active" (click)="closeSidebar()" >Consultation</button>
+    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/routePath']" routerLinkActive="router-link-active" (click)="closeSidebar()" >Suivi & traitement</button>
+    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/routePath']" routerLinkActive="router-link-active" (click)="closeSidebar()" >Statistique</button>
+    <button type="button" class="btn btn-outline-primary my-2 w-100 " style="height: 70px;" [routerLink]="['/administration']" routerLinkActive="router-link-active" (click)="closeSidebar()" >Administration</button>
   </div>
 </div>

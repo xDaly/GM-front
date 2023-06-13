@@ -19,14 +19,23 @@ import {
 })
 export class AdministrationComponent {
   closeResult = '';
- public selectedIdToDel : string 
+  public selectedId: string;
   gestionnaires: any[];
   public gestForm = new FormGroup({
-    userName: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    userName: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}'),
+    ]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    nom: new FormControl('', Validators.required),
-    prenom: new FormControl('', Validators.required),
+    nom: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z]+$'),
+    ]),
+    prenom: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z]+$'),
+    ]),
   });
   constructor(
     private modalService: NgbModal,
@@ -76,7 +85,7 @@ export class AdministrationComponent {
   }
 
   createGestionnaire() {
-    // console.log(this.gestForm.controls.email.errors);
+    console.log(this.gestForm);
 
     this._gestionnaire
       .createGestionnaire(this.gestForm.value)
@@ -89,23 +98,50 @@ export class AdministrationComponent {
       this.gestionnaires = res.data;
     });
   }
-  selectGestionnaire(id:string){
-    this.gestForm.reset()
+  selectGestionnaire(id: string) {
+    this.gestForm.reset();
     const index = this.gestionnaires.findIndex((item) => item['id'] == id);
-    console.log(this.gestionnaires[index]);
-    
-    this.gestForm.controls.userName.setValue(this.gestionnaires[index].userName)
-    this.gestForm.controls.password.setValue(this.gestionnaires[index].password)
-    this.gestForm.controls.nom.setValue(this.gestionnaires[index].Profil.nom)
-    this.gestForm.controls.prenom.setValue(this.gestionnaires[index].Profil.prenom)
-    this.gestForm.controls.email.setValue(this.gestionnaires[index].Profil.email)
+    this.gestForm.controls.userName.setValue(
+      this.gestionnaires[index].userName
+    );
+    this.gestForm.controls.password.setValue(
+      this.gestionnaires[index].password
+    );
+    this.gestForm.controls.nom.setValue(this.gestionnaires[index].Profil.nom);
+    this.gestForm.controls.prenom.setValue(
+      this.gestionnaires[index].Profil.prenom
+    );
+    this.gestForm.controls.email.setValue(
+      this.gestionnaires[index].Profil.email
+    );
   }
   deleteGestionnaire(id: string) {
     this._gestionnaire.deleteGestionnaire(id).subscribe((res: any) => {
-      const index = this.gestionnaires.findIndex((item) => item['id'] == id);
+      const index = this.gestionnaires.findIndex(
+        (item) => item.Profil['id'] == id
+      );
       if (index !== -1) {
         this.gestionnaires.splice(index, 1);
       }
     });
+  }
+  updateGestionnaire() {
+    this._gestionnaire
+      .updateGestionnaire(this.selectedId, this.gestForm.value)
+      .subscribe((res: any) => {
+        const index = this.gestionnaires.findIndex(
+          (e) => e.Profil.id == this.selectedId
+        );
+        this.gestionnaires[index] = {
+          id: this.gestionnaires[index].id,
+          userName: this.gestForm.value.userName,
+          password: this.gestForm.value.password,
+          Profil: {
+            nom: this.gestForm.value.nom,
+            prenom: this.gestForm.value.prenom,
+            email: this.gestForm.value.email,
+          },
+        };
+      });
   }
 }
