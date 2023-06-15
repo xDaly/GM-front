@@ -1,387 +1,400 @@
 <div class="m-5">
-    <button type="button" class="btn btn-primary m-3" (click)="open(content)">
-      <i class="fa-solid fa-plus"></i> Ajouter
-    </button>
-    <div class="d-flex m-3">
-      <input
-        class="form-control m-2"
-        type="text"
-        placeholder="CIN"
-        aria-label="default input example"
-      />
-      <input
-        class="form-control m-2"
-        type="text"
-        placeholder="Nom"
-        aria-label="default input example"
-      />
-      <input
-        class="form-control m-2"
-        type="text"
-        placeholder="Prenom"
-        aria-label="default input example"
-      />
-      <select class="form-select m-2" aria-label="Default select example">
-        <option selected>Structure</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-      <input
-        class="form-control m-2"
-        type="text"
-        placeholder="Etage"
-        aria-label="default input example"
-      />
-      <input
-        class="form-control m-2"
-        type="text"
-        placeholder="Num Bureau"
-        aria-label="default input example"
-      />
-      <input
-        class="form-control m-2"
-        type="text"
-        placeholder="Poste"
-        aria-label="default input example"
-      />
-      <select class="form-select m-2" aria-label="Default select example">
-          <option selected>Région</option>
-          <option *ngFor="let location of _general.locations" value="1">
-            {{ location.name }}
-          </option>
-        </select>
-      <select class="form-select m-2" aria-label="Default select example">
-        <option selected>Localisation</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-    </div>
-  
-    <table
-      class="table table-striped"
-      style="border: 1px solid grey; border-radius: 50px"
-    >
-      <thead>
-        <tr>
-          <th scope="col">CIN</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Prenom</th>
-          <th scope="col">Structure</th>
-          <th scope="col">Etage</th>
-          <th scope="col">Num Bureau</th>
-          <th scope="col">Poste</th>
-          <th scope="col">Région</th>
-          <th scope="col">Localisation</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>09842759</td>
-          <td>ICHRAK</td>
-          <td>ICHRAk</td>
-          <td>Direction</td>
-          <td>1 er</td>
-          <td>56</td>
-          <td>Directeur</td>
-          <td>TUNIS</td>
-          <td>TUNIS</td>
-          <td>
-            <div
-              class="btn-group d-flex justify-content-around"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <a class="pointer" style="color: green"
-                ><i class="fa-solid fa-eye"></i
-              ></a>
-              <a class="pointer" style="color: orange"
-                ><i class="fa-solid fa-pen"></i
-              ></a>
-              <a class="pointer" style="color: red"
-                ><i class="fa-solid fa-trash"></i
-              ></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>09842759</td>
-          <td>ICHRAK</td>
-          <td>ICHRAk</td>
-          <td>Direction</td>
-          <td>1 er</td>
-          <td>56</td>
-          <td>Directeur</td>
-          <td>TUNIS</td>
-          <td>TUNIS</td>
-          <td>
-            <div
-              class="btn-group d-flex justify-content-around"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <a class="pointer" style="color: green"
-                ><i class="fa-solid fa-eye"></i
-              ></a>
-              <a class="pointer" style="color: orange"
-                ><i class="fa-solid fa-pen"></i
-              ></a>
-              <a class="pointer" style="color: red"
-                ><i class="fa-solid fa-trash"></i
-              ></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>09842759</td>
-          <td>ICHRAK</td>
-          <td>ICHRAk</td>
-          <td>Direction</td>
-          <td>1 er</td>
-          <td>56</td>
-          <td>Directeur</td>
-          <td>TUNIS</td>
-          <td>TUNIS</td>
-          <td>
-            <div
-              class="btn-group d-flex justify-content-around"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <a class="pointer" style="color: green"
-                ><i class="fa-solid fa-eye"></i
-              ></a>
-              <a class="pointer" style="color: orange"
-                ><i class="fa-solid fa-pen"></i
-              ></a>
-              <a class="pointer" style="color: red"
-                ><i class="fa-solid fa-trash"></i
-              ></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>09842759</td>
-          <td>ICHRAK</td>
-          <td>ICHRAk</td>
-          <td>Direction</td>
-          <td>1 er</td>
-          <td>56</td>
-          <td>Directeur</td>
-          <td>TUNIS</td>
-          <td>TUNIS</td>
-          <td>
-            <div
-              class="btn-group d-flex justify-content-around"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <a class="pointer" style="color: green"
-                ><i class="fa-solid fa-eye"></i
-              ></a>
-              <a class="pointer" style="color: orange"
-                ><i class="fa-solid fa-pen"></i
-              ></a>
-              <a class="pointer" style="color: red"
-                ><i class="fa-solid fa-trash"></i
-              ></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>09842759</td>
-          <td>ICHRAK</td>
-          <td>ICHRAk</td>
-          <td>Direction</td>
-          <td>1 er</td>
-          <td>56</td>
-          <td>Directeur</td>
-          <td>TUNIS</td>
-          <td>TUNIS</td>
-          <td>
-            <div
-              class="btn-group d-flex justify-content-around"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <a class="pointer" style="color: green"
-                ><i class="fa-solid fa-eye"></i
-              ></a>
-              <a class="pointer" style="color: orange"
-                ><i class="fa-solid fa-pen"></i
-              ></a>
-              <a class="pointer" style="color: red"
-                ><i class="fa-solid fa-trash"></i
-              ></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>09842759</td>
-          <td>ICHRAK</td>
-          <td>ICHRAk</td>
-          <td>Direction</td>
-          <td>1 er</td>
-          <td>56</td>
-          <td>Directeur</td>
-          <td>TUNIS</td>
-          <td>TUNIS</td>
-          <td>
-            <div
-              class="btn-group d-flex justify-content-around"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <a class="pointer" style="color: green"
-                ><i class="fa-solid fa-eye"></i
-              ></a>
-              <a class="pointer" style="color: orange"
-                ><i class="fa-solid fa-pen"></i
-              ></a>
-              <a class="pointer" style="color: red"
-                ><i class="fa-solid fa-trash"></i
-              ></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>09842759</td>
-          <td>ICHRAK</td>
-          <td>ICHRAk</td>
-          <td>Direction</td>
-          <td>1 er</td>
-          <td>56</td>
-          <td>Directeur</td>
-          <td>TUNIS</td>
-          <td>TUNIS</td>
-          <td>
-            <div
-              class="btn-group d-flex justify-content-around"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <a class="pointer" style="color: green"
-                ><i class="fa-solid fa-eye"></i
-              ></a>
-              <a class="pointer" style="color: orange"
-                ><i class="fa-solid fa-pen"></i
-              ></a>
-              <a class="pointer" style="color: red"
-                ><i class="fa-solid fa-trash"></i
-              ></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>09842759</td>
-          <td>ICHRAK</td>
-          <td>ICHRAk</td>
-          <td>Direction</td>
-          <td>1 er</td>
-          <td>56</td>
-          <td>Directeur</td>
-          <td>TUNIS</td>
-          <td>TUNIS</td>
-          <td>
-            <div
-              class="btn-group d-flex justify-content-around"
-              role="group"
-              aria-label="Basic mixed styles example"
-            >
-              <a class="pointer" style="color: green"
-                ><i class="fa-solid fa-eye"></i
-              ></a>
-              <a class="pointer" style="color: orange"
-                ><i class="fa-solid fa-pen"></i
-              ></a>
-              <a class="pointer" style="color: red"
-                ><i class="fa-solid fa-trash"></i
-              ></a>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <button type="button" class="btn btn-primary m-3" (click)="open(content)">
+    <i class="fa-solid fa-plus"></i> Ajouter
+  </button>
+  <div class="d-flex m-3">
+    <input
+      class="form-control m-2"
+      type="text"
+      placeholder="CIN"
+      aria-label="default input example"
+    />
+    <input
+      class="form-control m-2"
+      type="text"
+      placeholder="Nom"
+      aria-label="default input example"
+    />
+    <input
+      class="form-control m-2"
+      type="text"
+      placeholder="Prenom"
+      aria-label="default input example"
+    />
+    <select class="form-select m-2" aria-label="Default select example">
+      <option selected>Structure</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+    <input
+      class="form-control m-2"
+      type="text"
+      placeholder="Etage"
+      aria-label="default input example"
+    />
+    <input
+      class="form-control m-2"
+      type="text"
+      placeholder="Num Bureau"
+      aria-label="default input example"
+    />
+    <input
+      class="form-control m-2"
+      type="text"
+      placeholder="Poste"
+      aria-label="default input example"
+    />
+    <select class="form-select m-2" aria-label="Default select example">
+      <option selected>Région</option>
+      <option *ngFor="let location of _general.locations" value="1">
+        {{ location.name }}
+      </option>
+    </select>
+    <select class="form-select m-2" aria-label="Default select example">
+      <option selected>Localisation</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
   </div>
-  
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Ajouter employer</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <input
-          class="form-control mb-2"
-          type="text"
-          placeholder="CIN"
-          aria-label="default input example"
-        />
-        <input
-          class="form-control mb-2"
-          type="text"
-          placeholder="Nom"
-          aria-label="default input example"
-        />
-        <input
-          class="form-control mb-2"
-          type="text"
-          placeholder="Prenom"
-          aria-label="default input example"
-        />
-        <select class="form-select mb-2" aria-label="Default select example">
-          <option selected>Structure</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-        <input
-          class="form-control mb-2"
-          type="text"
-          placeholder="Etage"
-          aria-label="default input example"
-        />
-        <input
-          class="form-control mb-2"
-          type="text"
-          placeholder="Num Bureau"
-          aria-label="default input example"
-        />
-        <input
-          class="form-control mb-2"
-          type="text"
-          placeholder="Poste"
-          aria-label="default input example"
-        />
-        <select class="form-select mb-2" aria-label="Default select example">
-          <option selected>Région</option>
-          <option *ngFor="let location of _general.locations" value="1">
-            {{ location.name }}
-          </option>
-        </select>
-        <select class="form-select mb-2" aria-label="Default select example">
-          <option selected>Localisation</option>
-          <option *ngFor="let location of _general.locations" value="1">
-            {{ location.name }}
-          </option>
-        </select>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="modal.close('Save click')"
+
+  <table
+    class="table table-striped"
+    style="border: 1px solid grey; border-radius: 50px"
+  >
+    <thead>
+      <tr>
+        <th scope="col">CIN</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Structure</th>
+        <th scope="col">Etage</th>
+        <th scope="col">Num Bureau</th>
+        <th scope="col">Poste</th>
+        <th scope="col">Région</th>
+        <th scope="col">Localisation</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>09842759</td>
+        <td>ICHRAK</td>
+        <td>ICHRAk</td>
+        <td>Direction</td>
+        <td>1 er</td>
+        <td>56</td>
+        <td>Directeur</td>
+        <td>TUNIS</td>
+        <td>TUNIS</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a>
+            <a class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a class="pointer" style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>09842759</td>
+        <td>ICHRAK</td>
+        <td>ICHRAk</td>
+        <td>Direction</td>
+        <td>1 er</td>
+        <td>56</td>
+        <td>Directeur</td>
+        <td>TUNIS</td>
+        <td>TUNIS</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a>
+            <a class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a class="pointer" style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>09842759</td>
+        <td>ICHRAK</td>
+        <td>ICHRAk</td>
+        <td>Direction</td>
+        <td>1 er</td>
+        <td>56</td>
+        <td>Directeur</td>
+        <td>TUNIS</td>
+        <td>TUNIS</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a>
+            <a class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a class="pointer" style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>09842759</td>
+        <td>ICHRAK</td>
+        <td>ICHRAk</td>
+        <td>Direction</td>
+        <td>1 er</td>
+        <td>56</td>
+        <td>Directeur</td>
+        <td>TUNIS</td>
+        <td>TUNIS</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a>
+            <a class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a class="pointer" style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>09842759</td>
+        <td>ICHRAK</td>
+        <td>ICHRAk</td>
+        <td>Direction</td>
+        <td>1 er</td>
+        <td>56</td>
+        <td>Directeur</td>
+        <td>TUNIS</td>
+        <td>TUNIS</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a>
+            <a class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a class="pointer" style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>09842759</td>
+        <td>ICHRAK</td>
+        <td>ICHRAk</td>
+        <td>Direction</td>
+        <td>1 er</td>
+        <td>56</td>
+        <td>Directeur</td>
+        <td>TUNIS</td>
+        <td>TUNIS</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a>
+            <a class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a class="pointer" style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>09842759</td>
+        <td>ICHRAK</td>
+        <td>ICHRAk</td>
+        <td>Direction</td>
+        <td>1 er</td>
+        <td>56</td>
+        <td>Directeur</td>
+        <td>TUNIS</td>
+        <td>TUNIS</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a>
+            <a class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a class="pointer" style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>09842759</td>
+        <td>ICHRAK</td>
+        <td>ICHRAk</td>
+        <td>Direction</td>
+        <td>1 er</td>
+        <td>56</td>
+        <td>Directeur</td>
+        <td>TUNIS</td>
+        <td>TUNIS</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+            <a class="pointer" style="color: green"
+              ><i class="fa-solid fa-eye"></i
+            ></a>
+            <a class="pointer" style="color: orange"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a class="pointer" style="color: red"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter Materiel</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="assetForm">
+      <input
+        class="form-control mb-2"
+        type="text"
+        placeholder="Numero de serie"
+        formControlName="SN"
+        aria-label="default input example"
+      />
+      <input
+        class="form-control mb-2"
+        type="text"
+        placeholder="Model"
+        formControlName="model"
+        aria-label="default input example"
+      />
+      <label for="buy_date">date d'achat</label>
+      <input
+        class="form-control mb-2"
+        type="date"
+        id="buy_date"
+        formControlName="buy_date"
+        placeholder="date d'achat"
+        aria-label="default input example"
+      />
+      <select
+        class="form-select mb-2"
+        formControlName="structure"
+        aria-label="Default select example"
       >
-        Ajouter
-      </button>
-    </div>
-  </ng-template>
-  
+        <option selected value="Structure" disabled>Structure</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <input
+        class="form-control mb-2"
+        type="text"
+        placeholder="Etat"
+        formControlName="etat"
+        aria-label="default input example"
+      />
+
+      <select
+        class="form-select mb-2"
+        formControlName="localisation"
+        aria-label="Default select example"
+      >
+        <option selected>Région</option>
+        <option *ngFor="let location of _general.locations" value="1">
+          {{ location.name }}
+        </option>
+      </select>
+      <select
+        class="form-select mb-2"
+        formControlName="localisation"
+        aria-label="Default select example"
+      >
+        <option selected value="Localisation" disabled>Localisation</option>
+        <option *ngFor="let localisation of _general.localisations" [value]="localisation">
+          {{ localisation }}
+        </option>
+      </select>
+      <textarea
+        class="form-control mb-2"
+        type="text"
+        placeholder="Observation"
+        formControlName="observation"
+        aria-label="default input example"
+      ></textarea>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Ajouter
+    </button>
+  </div>
+</ng-template>

@@ -6,19 +6,32 @@ import {
   NgbModal,
 } from '@ng-bootstrap/ng-bootstrap';
 import { GeneralService } from 'src/app/services/general.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-asset-manager',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './asset-manager.component.html',
-  styleUrls: ['./asset-manager.component.scss']
+  styleUrls: ['./asset-manager.component.scss'],
 })
 export class AssetManagerComponent {
   closeResult = '';
-  constructor(private modalService: NgbModal,public _general:GeneralService) {}
+  assetForm = new FormGroup({
+    SN: new FormControl(''),
+    model: new FormControl(''),
+    buy_date: new FormControl(''),
+    structure: new FormControl('Structure'),
+    localisation: new FormControl('Localisation'),
+    etat: new FormControl(''),
+    observation: new FormControl(''),
+  });
+  constructor(
+    private modalService: NgbModal,
+    public _general: GeneralService
+  ) {}
 
-  open(content:any) {
+  open(content: any) {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
@@ -40,17 +53,15 @@ export class AssetManagerComponent {
       return `with: ${reason}`;
     }
   }
-
 }
 
-
-// id	
-// SN	
-// model	
-// buy_date	
-// current_owner	
-// structure	
-// localisation	
-// etat	
-// observation	
-// createdAt	datetime	
+// id
+// SN
+// model
+// buy_date
+// current_owner
+// structure
+// localisation
+// etat
+// observation
+// createdAt	datetime

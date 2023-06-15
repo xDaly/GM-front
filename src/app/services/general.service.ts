@@ -84,5 +84,6 @@ export class GeneralService {
       name: 'Sidi Bouzid',
     },
   ];
+  localisations = ['Siège','Regions','Pépinières']
   constructor() {}
 }
