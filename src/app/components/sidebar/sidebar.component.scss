@@ -1,16 +1,35 @@
 .sidebar {
-  width: 300px;
-  height: 100vh;
-  position: fixed;
-  background-color: rgb(233, 233, 233);
+  width: 100px;
+  height: calc(100vh - 71px);
+  background-color: #EFF3F8;
   z-index: 10;
-  left: -300px;
-  transition: all .5s;
+  transition: all 0.3s;
 }
 
 .open {
-    box-shadow: 3px 0px 10px black;
-  left: 0;
-  transition: all .5s;
+  box-shadow: 3px 0px 10px black;
+  width: 300px;
+  transition: all 0.3s;
+}
 
+.side-item {
+  height: 70px;
+  text-decoration: none;
+  width: 100%;
+  color: black;
+  transition: all 0.5s;
+
+  &:hover {
+    transition: all 0.5s;
+    background-color: white;
+  }
+}
+
+.text-visible{
+  transition: all 0.5s;
+  display: block;
+}
+.hidden{
+  transition: all 0.5s;
+  display: none;
 }

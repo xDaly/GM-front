@@ -25,6 +25,7 @@ export class AdministrationComponent {
     userName: new FormControl('', [Validators.required]),
     password: new FormControl('', [
       Validators.required,
+      Validators.minLength(6),
       Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}'),
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),

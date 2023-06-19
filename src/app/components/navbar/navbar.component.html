@@ -1,10 +1,18 @@
 <nav
   class="navbar navbar-expand-lg bg-body-tertiary w-100"
-  style="height: 70px; z-index: 9; position: fixed;background-color: #1976d2 !important ;color:white !important;"
+  style="
+    height: 70px;
+    z-index: 9;
+    position: fixed;
+    background-color: #1976d2 !important ;
+    color: white !important;
+  "
 >
   <div class="container-fluid">
-    <a class="navbar-brand m-3 pointer"             style="font-weight: 700 ; color: white;"
-    (click)="openSidebar()"
+    <a
+      class="navbar-brand m-3 pointer"
+      style="font-weight: 700; color: white"
+      (click)="openSidebar()"
       ><i class="fa-solid fa-bars"></i
     ></a>
     <button
@@ -24,7 +32,7 @@
           <a
             class="nav-link active"
             aria-current="page"
-            style="font-weight: 700 ; color: white;"
+            style="font-weight: 700; color: white"
             >ADMIN</a
           >
         </li>
@@ -40,29 +48,29 @@
           style="font-weight: 700; margin-right: 10px"
           >Ichrak</a
         >
-          <img
-          *ngIf="role == 1 "
-            src="https://t4.ftcdn.net/jpg/00/65/10/47/360_F_65104718_x17a76wzWKIm3BlhA6uyYVkDs9982c6q.jpg"
-            class="img-thumbnail"
-            style="
-              width: 60px;
-              height: 60px;
-              object-fit: cover;
-              border-radius: 100%;
-            "
-          />
-   
-          <img
-          *ngIf="role == 2 "
-            src="https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
-            class="img-thumbnail"
-            style="
-              width: 60px;
-              height: 60px;
-              object-fit: cover;
-              border-radius: 100%;
-            "
-          />
+        <img
+          *ngIf="role == 1"
+          src="https://t4.ftcdn.net/jpg/00/65/10/47/360_F_65104718_x17a76wzWKIm3BlhA6uyYVkDs9982c6q.jpg"
+          class="img-thumbnail"
+          style="
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 100%;
+          "
+        />
+
+        <img
+          *ngIf="role == 2"
+          src="https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
+          class="img-thumbnail"
+          style="
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 100%;
+          "
+        />
       </form>
     </div>
   </div>

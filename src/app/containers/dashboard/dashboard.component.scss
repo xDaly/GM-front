@@ -1,0 +1,18 @@
+.wrapper-router {
+  display: flex;
+}
+.sidebar {
+  width: 300px;
+  height: calc(100vh - 71px);
+  // position: fixed;
+  background-color: rgb(233, 233, 233);
+  z-index: 10;
+  left: -300px;
+  transition: all 0.5s;
+}
+
+.open {
+  box-shadow: 3px 0px 10px black;
+  left: 0;
+  transition: all 0.5s;
+}
