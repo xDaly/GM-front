@@ -8,46 +8,46 @@
     <i class="fa-regular fa-circle-xmark fa-2xl pointer" (click)="closeSidebar()"></i>
   </div> -->
   <div class="d-flex flex-column h-100 justify-content-center">
-    <A
+    <a
       class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
-      [routerLink]="['/']"
+      [routerLink]="['/acceuil']"
       routerLinkActive="router-link-active"
       (click)="closeSidebar()"
       ><i class="fa-solid fa-chart-simple mx-2 fa-xl"></i> 
-      <span class="text-visible" [class.hidden]="!isOpened">Acceuil</span></A
+      <span class="text-visible" [class.hidden]="!isOpened">Acceuil</span></a
     >
-    <A
+    <a
       class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
       [routerLink]="['/consultation']"
       routerLinkActive="router-link-active"
       (click)="closeSidebar()"
       >
       <i class="fa-regular fa-chart-bar mx-2 fa-xl"></i>
-      <span class="text-visible" [class.hidden]="!isOpened">Consultation</span></A
+      <span class="text-visible" [class.hidden]="!isOpened">Consultation</span></a
     >
-    <A
+    <a
       class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
       [routerLink]="['/routePath']"
       routerLinkActive="router-link-active"
       (click)="closeSidebar()"
       >
       <i class="fa-solid fa-magnifying-glass mx-2 fa-xl"></i>
-      <span class="text-visible" [class.hidden]="!isOpened">Suivi & traitement</span></A
+      <span class="text-visible" [class.hidden]="!isOpened">Suivi & traitement</span></a
     >
-    <A
+    <a
       class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
       [routerLink]="['/routePath']"
       routerLinkActive="router-link-active"
       (click)="closeSidebar()"
       >
-      <i class="fa-solid fa-chart-pie mx-2 fa-xl"></i><span class="text-visible" [class.hidden]="!isOpened">Statistique</span></A
+      <i class="fa-solid fa-chart-pie mx-2 fa-xl"></i><span class="text-visible" [class.hidden]="!isOpened">Statistique</span></a
     >
-    <A
+    <a
       class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
       [routerLink]="['/administration']"
       routerLinkActive="router-link-active"
       (click)="closeSidebar()"
-      ><i class="fa-solid fa-users-gear mx-2 fa-xl"></i><span class="text-visible" [class.hidden]="!isOpened">Administration</span></A
+      ><i class="fa-solid fa-users-gear mx-2 fa-xl"></i><span class="text-visible" [class.hidden]="!isOpened">Administration</span></a
     >
   </div>
 </div>

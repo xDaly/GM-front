@@ -7,6 +7,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { GeneralService } from 'src/app/services/general.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AssetService } from 'src/app/services/asset.service';
 
 @Component({
   selector: 'app-asset-manager',
@@ -17,19 +18,36 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class AssetManagerComponent {
   closeResult = '';
+  filters = {
+    page: 0,
+    size: 10,
+    SN: '',
+    model: '',
+    buy_date: '',
+    structure: '',
+    region: '',
+    localisation: '',
+    etat: '',
+    observation: '',
+  };
+  assets = [];
   assetForm = new FormGroup({
     SN: new FormControl(''),
     model: new FormControl(''),
     buy_date: new FormControl(''),
-    structure: new FormControl('Structure'),
+    structure: new FormControl(''),
+    region: new FormControl(''),
     localisation: new FormControl('Localisation'),
     etat: new FormControl(''),
     observation: new FormControl(''),
   });
   constructor(
     private modalService: NgbModal,
+    private _asset: AssetService,
     public _general: GeneralService
-  ) {}
+  ) {
+    this.getAssets()
+  }
 
   open(content: any) {
     this.modalService
@@ -53,6 +71,20 @@ export class AssetManagerComponent {
       return `with: ${reason}`;
     }
   }
+  createAsset() {}
+  getAssets() {
+    this._asset.getAssets(this.filters).subscribe({
+      next: (res: any) => {
+        this.assets = res.data;
+      },
+      error: (err: any) => {
+        this._general.showError('erreur',err.error.message)
+      },
+      complete: () => {},
+    });
+  }
+  updateAsset() {}
+  deleteAsset() {}
 }
 
 // id
