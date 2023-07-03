@@ -9,6 +9,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { numberValidator } from 'src/app/core/validators/checkNumber.validator';
+import { uppercaseValidator } from 'src/app/core/validators/checkUpperCase.validator';
+import { lowercaseValidator } from 'src/app/core/validators/checkLowerCase.validator';
+import { specialValidator } from 'src/app/core/validators/checkSpecial.validator';
+import { emailValidator } from 'src/app/core/validators/checkEmail.validator';
 
 @Component({
   selector: 'app-administration',
@@ -25,10 +30,12 @@ export class AdministrationComponent {
     userName: new FormControl('', [Validators.required]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(6),
-      Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}'),
+      uppercaseValidator,
+      lowercaseValidator,
+      specialValidator,
+      numberValidator
     ]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, emailValidator]),
     nom: new FormControl('', [
       Validators.required,
       Validators.pattern('^[a-zA-Z]+$'),
@@ -44,6 +51,10 @@ export class AdministrationComponent {
     public _general: GeneralService
   ) {
     this.getGestionnaires();
+  }
+
+  ngOnInit(){
+    // this.gestForm?.controls['password'].setValidators([numberValidator]);
   }
 
   open(content: any) {
@@ -86,13 +97,13 @@ export class AdministrationComponent {
   }
 
   createGestionnaire() {
-    console.log(this.gestForm);
-
-    this._gestionnaire
-      .createGestionnaire(this.gestForm.value)
-      .subscribe((res: any) => {
-        this.gestionnaires.push(res.data);
-      });
+    console.log(this.gestForm.controls['password'].errors);
+    
+    // this._gestionnaire
+    //   .createGestionnaire(this.gestForm.value)
+    //   .subscribe((res: any) => {
+    //     this.gestionnaires.push(res.data);
+    //   });
   }
   getGestionnaires() {
     this._gestionnaire.getGestionnaires().subscribe((res: any) => {
@@ -141,6 +152,7 @@ export class AdministrationComponent {
             nom: this.gestForm.value.nom,
             prenom: this.gestForm.value.prenom,
             email: this.gestForm.value.email,
+            id: this.selectedId,
           },
         };
       });
