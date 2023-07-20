@@ -1,5 +1,5 @@
 <div class="m-5">
-  <button type="button" class="btn btn-primary m-3" (click)="open(content)">
+  <button   *ngIf="_general.user.role == 'admin'" type="button" class="btn btn-primary m-3" (click)="open(content)">
     <i class="fa-solid fa-plus"></i> Ajouter
   </button>
   <div class="d-flex m-3">
@@ -140,6 +140,7 @@
               ><i class="fa-solid fa-pen"></i
             ></a>
             <a
+            *ngIf="_general.user.role == 'admin'" 
               (click)="selectedEmploye = employe; open(delcontent)"
               class="pointer"
               style="color: red"

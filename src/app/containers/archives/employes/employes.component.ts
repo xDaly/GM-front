@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { GeneralService } from 'src/app/services/general.service';
 import { EmployeService } from 'src/app/services/employe.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employes',
   standalone: true,
-  imports: [CommonModule, NgbPaginationModule],
+  imports: [CommonModule, NgbPaginationModule,FormsModule],
   templateUrl: './employes.component.html',
   styleUrls: ['./employes.component.scss'],
 })

@@ -4,13 +4,14 @@ import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AssetService } from 'src/app/services/asset.service';
 import { EmployeService } from 'src/app/services/employe.service';
 import { GeneralService } from 'src/app/services/general.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-assets',
   standalone: true,
-  imports: [CommonModule,NgbPaginationModule],
+  imports: [CommonModule, NgbPaginationModule, FormsModule],
   templateUrl: './assets.component.html',
-  styleUrls: ['./assets.component.scss']
+  styleUrls: ['./assets.component.scss'],
 })
 export class AssetsComponent {
   filters = {
@@ -34,7 +35,7 @@ export class AssetsComponent {
     private modalService: NgbModal,
     private _asset: AssetService,
     private _employe: EmployeService,
-    public _general: GeneralService,
+    public _general: GeneralService
   ) {
     this.getAssets();
   }
@@ -50,6 +51,12 @@ export class AssetsComponent {
         this._general.showError('erreur', err.error.message);
       },
       complete: () => {},
+    });
+  }
+
+  activate(id: string) {
+    this._asset.updateAsset({ etat: 'en stock' }, id).subscribe((res: any) => {
+      window.location.reload();
     });
   }
 }

@@ -1,5 +1,71 @@
 <div class="m-5">
-   
+  <div class="d-flex m-3">
+    <input
+      class="form-control m-2"
+      [(ngModel)]="filters.cin"
+      (ngModelChange)="getEmployes()"
+      type="text"
+      placeholder="CIN"
+      aria-label="default input example"
+    />
+    <input
+      class="form-control m-2"
+      [(ngModel)]="filters.nom"
+      (ngModelChange)="getEmployes()"
+      type="text"
+      placeholder="Nom"
+      aria-label="default input example"
+    />
+
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.structure"
+      (ngModelChange)="getEmployes()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les structures</option>
+      <option *ngFor="let structure of _general.structures" [value]="structure">
+        {{ structure }}
+      </option>
+    </select>
+    <input
+      class="form-control m-2"
+      type="text"
+      [(ngModel)]="filters.etage"
+      (ngModelChange)="getEmployes()"
+      placeholder="Etage"
+      aria-label="default input example"
+    />
+
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.region"
+      (ngModelChange)="getEmployes()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les regions</option>
+      <option
+        *ngFor="let location of _general.locations"
+        [value]="location.name"
+      >
+        {{ location.name }}
+      </option>
+    </select>
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.localisation"
+      (ngModelChange)="getEmployes()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les localisations</option>
+      <option
+        *ngFor="let localisation of _general.localisations"
+        [value]="localisation"
+      >
+        {{ localisation }}
+      </option>
+    </select>
+  </div>
 
     <ngb-pagination
       class="d-flex justify-content-center"

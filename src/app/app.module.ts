@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from 'src/core/token.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -16,6 +17,7 @@ registerLocaleData(localeFr, 'fr');
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,

@@ -18,6 +18,7 @@
     <div style="position: relative;">
 
       <input
+      (keyup.enter)="signin()"
       style="height: 60px"
       [type]="type"
       [(ngModel)]="password"
@@ -33,7 +34,8 @@
       Your password must be 8-20 characters long, contain letters and numbers,
       and must not contain spaces, special characters, or emoji.
     </div> -->
-    <button type="button" class="btn btn-outline-primary" (click)="signin()" style="height: 60px">
+    <span *ngIf="error"style="color:red">{{error}}</span>
+    <button type="button" class="btn btn-outline-primary"  (click)="signin()" style="height: 60px">
       Se connecter
     </button>
   </div>

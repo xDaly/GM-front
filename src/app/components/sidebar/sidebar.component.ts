@@ -12,12 +12,16 @@ import { RouterModule } from '@angular/router';
 })
 export class SidebarComponent {
   isOpened: any;
-  constructor(private GeneralService: GeneralService) {
+  constructor(public GeneralService: GeneralService) {
     this.GeneralService.sideBarOpened.subscribe((isOpened:boolean)=>{
       this.isOpened = isOpened
     })
   }
   closeSidebar() {
     this.GeneralService.sideBarOpened.next(false);
+  }
+  disconnect(){
+    localStorage.clear()
+    window.location.reload()
   }
 }

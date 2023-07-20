@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -15,12 +16,14 @@ export class SigninComponent {
   username: string = '';
   password: string = '';
   names: any;
-  public type:string = 'password'
+  public type: string = 'password';
+  error: any;
   constructor(
     private _authentification: AuthentificationService,
     private _router: Router,
+    private _toastr: ToastrService
   ) {
-    this.getGestionnairesNames()
+    this.getGestionnairesNames();
   }
   signin() {
     this._authentification
@@ -39,12 +42,14 @@ export class SigninComponent {
           localStorage.setItem('userName', value.data.userName);
           this._router.navigate(['/']);
         },
-        error(err) {},
+        error: (err:any) => {
+          this.error = err.error.message
+        },
       });
   }
-  getGestionnairesNames(){
-    this._authentification.getGestionnairesNames().subscribe((res:any)=>{
-      this.names = res.data
-    })
+  getGestionnairesNames() {
+    this._authentification.getGestionnairesNames().subscribe((res: any) => {
+      this.names = res.data;
+    });
   }
 }

@@ -5,9 +5,9 @@
       style="justify-content: center; align-items: center; color: white"
     >
       <span style="font-size: xx-large; font-weight: 700; margin-right: 10px">{{
-        counts?.users
+        counts?.stockAssets
       }}</span
-      >Gestionnaire actif
+      >Materiel en stock
     </div>
   </div>
   <div class="card m-2" style="background-color: #cc7676">
@@ -16,9 +16,9 @@
       style="justify-content: center; align-items: center; color: white"
     >
       <span style="font-size: xx-large; font-weight: 700; margin-right: 10px">{{
-        counts?.archivedusers
+        counts?.inUseAssets
       }}</span>
-      Gestionnaire archivé
+      Materiel en utilisation
     </div>
   </div>
   <div class="card m-2" style="background-color: #86cc76">
@@ -27,12 +27,12 @@
       style="justify-content: center; align-items: center; color: white"
     >
       <span style="font-size: xx-large; font-weight: 700; margin-right: 10px">{{
-        counts?.assets
+        counts?.brokenAssets
       }}</span>
-      Materiels non déclassé
+      Materiels en panne
     </div>
   </div>
-  <div class="card m-2" style="background-color: #cc7684">
+  <!-- <div class="card m-2" style="background-color: #cc7684">
     <div
       class="card-body d-flex"
       style="justify-content: center; align-items: center; color: white"
@@ -42,7 +42,7 @@
       }}</span>
       Materiels déclassé
     </div>
-  </div>
+  </div> -->
   <div class="card m-2 bg-success">
     <div
       class="card-body d-flex"
@@ -67,11 +67,9 @@
   </div>
 </div>
 
-<div
-  class="container d-flex"
-  *ngIf="showCharts"
-  style="justify-content: space-around"
->
+
+
+<div class="container d-flex"  *ngIf="showCharts" style="justify-content: space-around">
   <div
     style="
       display: flex;
@@ -80,7 +78,27 @@
       align-items: center;
     "
   >
-    <strong>Employés par localisation</strong>
+    <strong>Materiel par localisation</strong>
+    <canvas
+      baseChart
+      [type]="'pie'"
+      [datasets]="localisationpieChartDatasets"
+      [labels]="localisationpieChartLabels"
+      [options]="pieChartOptions"
+      [legend]="pieChartLegend"
+    >
+    </canvas>
+  </div>
+
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <strong>Materiel par region</strong>
     <canvas
       baseChart
       [type]="'pie'"
@@ -100,21 +118,23 @@
       align-items: center;
     "
   >
-    <strong>Employés par region</strong>
+    <strong>Materiel par type</strong>
     <canvas
       baseChart
       [type]="'pie'"
-      [datasets]="pieChartDatasets"
-      [labels]="pieChartLabels"
+      [datasets]="typenpieChartDatasets"
+      [labels]="typenpieChartLabels"
       [options]="pieChartOptions"
       [legend]="pieChartLegend"
     >
     </canvas>
   </div>
 </div>
+<div class="container d-flex" style="justify-content: space-around"></div>
+<div class="container d-flex" style="justify-content: space-around"></div>
 
 <div
-*ngIf="showCharts"
+  *ngIf="showCharts"
   class="container"
   style="
     display: flex;

@@ -1,58 +1,155 @@
 <div class="m-5">
-
-
-    <ngb-pagination
-      class="d-flex justify-content-center"
-      [collectionSize]="count"
-      [(page)]="filters.page"
-      [maxSize]="5"
-      [pageSize]="filters.size"
-      [boundaryLinks]="true"
-      (pageChange)="getAssets()"
-    ></ngb-pagination>
-  
-    <table
-      class="table table-striped"
-      style="border: 1px solid grey; border-radius: 50px"
+  <div class="d-flex m-3">
+    <input
+      class="form-control m-2"
+      type="text"
+      placeholder="N de serie"
+      [(ngModel)]="filters.SN"
+      (ngModelChange)="getAssets()"
+      aria-label="default input example"
+    />
+    <select
+      id="type"
+      class="form-select m-2"
+      [(ngModel)]="filters.type"
+      (ngModelChange)="getAssets()"
+      aria-label="Default select example"
     >
-      <thead>
-        <tr>
-          <th scope="col">Num de Serie</th>
-          <th scope="col">Type</th>
-          <th scope="col">Modele</th>
-          <th scope="col">Date d'achat</th>
-          <th scope="col">Structure</th>
-          <th scope="col">Region</th>
-          <th scope="col">Localisation</th>
-          <th scope="col">Etat</th>
-          <th scope="col">Observation</th>
-          <th scope="col">Beneficere</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let asset of assets">
-          <td>{{ asset.SN }}</td>
-          <td>{{ asset.type }}</td>
-          <td>{{ asset.model }}</td>
-          <td>{{ asset.buy_date }}</td>
-          <td>{{ asset.Employe.structure }}</td>
-          <td>{{ asset.Employe.region }}</td>
-          <td>{{ asset.Employe.localisation }}</td>
-          <td>{{ asset.etat }}</td>
-          <td
-            style="
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              max-width: 1px;
-            "
-          >
-            {{ asset.observation }}
-          </td>
-          <td>{{ asset.Employe.nom }}</td>
-       
-        </tr>
-      </tbody>
-    </table>
+      <option selected value="">tous les types</option>
+      <option *ngFor="let type of _general.types" [value]="type">
+        {{ type }}
+      </option>
+    </select>
+    <input
+      class="form-control m-2"
+      type="text"
+      placeholder="model"
+      [(ngModel)]="filters.model"
+      (ngModelChange)="getAssets()"
+      aria-label="default input example"
+    />
+    <input
+      class="form-control m-2"
+      type="date"
+      id="buy_date"
+      [(ngModel)]="filters.buy_date"
+      (ngModelChange)="getAssets()"
+      placeholder="date d'achat"
+      aria-label="default input example"
+    />
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.structure"
+      (ngModelChange)="getAssets()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les structures</option>
+      <option *ngFor="let structure of _general.structures" [value]="structure">
+        {{ structure }}
+      </option>
+    </select>
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.region"
+      (ngModelChange)="getAssets()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les regions</option>
+      <option
+        *ngFor="let location of _general.locations"
+        [value]="location.name"
+      >
+        {{ location.name }}
+      </option>
+    </select>
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.localisation"
+      (ngModelChange)="getAssets()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les localisations</option>
+      <option
+        *ngFor="let localisation of _general.localisations"
+        [value]="localisation"
+      >
+        {{ localisation }}
+      </option>
+    </select>
+
+    <!-- <select
+      class="form-select m-2"
+      [(ngModel)]="filters.etat"
+      (ngModelChange)="getAssets()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les etats</option>
+      <option *ngFor="let etat of _general.etats" [value]="etat">
+        {{ etat }}
+      </option>
+    </select> -->
   </div>
-  
+
+  <ngb-pagination
+    class="d-flex justify-content-center"
+    [collectionSize]="count"
+    [(page)]="filters.page"
+    [maxSize]="5"
+    [pageSize]="filters.size"
+    [boundaryLinks]="true"
+    (pageChange)="getAssets()"
+  ></ngb-pagination>
+
+  <table
+    class="table table-striped"
+    style="border: 1px solid grey; border-radius: 50px"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Num de Serie</th>
+        <th scope="col">Type</th>
+        <th scope="col">Modele</th>
+        <th scope="col">Date d'achat</th>
+        <th scope="col">Structure</th>
+        <th scope="col">Region</th>
+        <th scope="col">Localisation</th>
+        <th scope="col">Etat</th>
+        <th scope="col">Observation</th>
+        <th scope="col">Beneficere</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let asset of assets">
+        <td>{{ asset.SN }}</td>
+        <td>{{ asset.type }}</td>
+        <td>{{ asset.model }}</td>
+        <td>{{ asset.buy_date }}</td>
+        <td>{{ asset.Employe.structure }}</td>
+        <td>{{ asset.Employe.region }}</td>
+        <td>{{ asset.Employe.localisation }}</td>
+        <td>{{ asset.etat }}</td>
+        <td
+          style="
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 1px;
+          "
+        >
+          {{ asset.observation }}
+        </td>
+        <td>{{ asset.Employe.nom }}</td>
+        <td>
+          <div
+            class="btn-group d-flex justify-content-around"
+            role="group"
+            aria-label="Basic mixed styles example"
+          >
+          <button class="btn btn-success" (click)="activate(asset.id)">Activer</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
