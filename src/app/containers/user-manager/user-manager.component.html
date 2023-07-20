@@ -5,60 +5,91 @@
   <div class="d-flex m-3">
     <input
       class="form-control m-2"
+      [(ngModel)]="filters.cin"
+      (ngModelChange)="getEmployes()"
       type="text"
       placeholder="CIN"
       aria-label="default input example"
     />
     <input
       class="form-control m-2"
+      [(ngModel)]="filters.nom"
+      (ngModelChange)="getEmployes()"
       type="text"
       placeholder="Nom"
       aria-label="default input example"
     />
-    <input
-      class="form-control m-2"
-      type="text"
-      placeholder="Prenom"
-      aria-label="default input example"
-    />
-    <select class="form-select m-2" aria-label="Default select example">
-      <option selected>Structure</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.structure"
+      (ngModelChange)="getEmployes()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les structures</option>
+      <option *ngFor="let structure of _general.structures" [value]="structure">
+        {{ structure }}
+      </option>
     </select>
     <input
       class="form-control m-2"
       type="text"
+      [(ngModel)]="filters.etage"
+      (ngModelChange)="getEmployes()"
       placeholder="Etage"
       aria-label="default input example"
     />
-    <input
-      class="form-control m-2"
-      type="text"
-      placeholder="Num Bureau"
-      aria-label="default input example"
-    />
-    <input
-      class="form-control m-2"
-      type="text"
-      placeholder="Poste"
-      aria-label="default input example"
-    />
-    <select class="form-select m-2" aria-label="Default select example">
-        <option selected>Région</option>
-        <option *ngFor="let location of _general.locations" value="1">
-          {{ location.name }}
-        </option>
-      </select>
-    <select class="form-select m-2" aria-label="Default select example">
-      <option selected>Localisation</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
+
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.region"
+      (ngModelChange)="getEmployes()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les regions</option>
+      <option
+        *ngFor="let location of _general.locations"
+        [value]="location.name"
+      >
+        {{ location.name }}
+      </option>
+    </select>
+    <select
+      class="form-select m-2"
+      [(ngModel)]="filters.localisation"
+      (ngModelChange)="getEmployes()"
+      aria-label="Default select example"
+    >
+      <option selected value="">Tous les localisations</option>
+      <option
+        *ngFor="let localisation of _general.localisations"
+        [value]="localisation"
+      >
+        {{ localisation }}
+      </option>
     </select>
   </div>
-
+  <div class="form-check" (click)="filters.archived = false; getEmployes()">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+    <label class="form-check-label" for="flexRadioDefault1">
+      Afficher Employe actif
+    </label>
+  </div>
+  <div class="form-check" (click)="filters.archived = true; getEmployes()">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+    <label class="form-check-label" for="flexRadioDefault2">
+      Afficher Employe archivé
+    </label>
+  </div>
+  <ngb-pagination
+    class="d-flex justify-content-center"
+    [collectionSize]="count"
+    [(page)]="filters.page"
+    [maxSize]="5"
+    [pageSize]="filters.size"
+    [boundaryLinks]="true"
+    (pageChange)="getEmployes()"
+  ></ngb-pagination>
   <table
     class="table table-striped"
     style="border: 1px solid grey; border-radius: 50px"
@@ -67,7 +98,6 @@
       <tr>
         <th scope="col">CIN</th>
         <th scope="col">Nom</th>
-        <th scope="col">Prenom</th>
         <th scope="col">Structure</th>
         <th scope="col">Etage</th>
         <th scope="col">Num Bureau</th>
@@ -78,225 +108,41 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>09842759</td>
-        <td>ICHRAK</td>
-        <td>ICHRAk</td>
-        <td>Direction</td>
-        <td>1 er</td>
-        <td>56</td>
-        <td>Directeur</td>
-        <td>TUNIS</td>
-        <td>TUNIS</td>
+      <tr *ngFor="let employe of employes">
+        <td>{{ employe.cin }}</td>
+        <td>{{ employe.nom }}</td>
+        <td>{{ employe.structure }}</td>
+        <td>{{ employe.etage }}</td>
+        <td>{{ employe.bureau }}</td>
+        <td>{{ employe.poste }}</td>
+        <td>{{ employe.region }}</td>
+        <td>{{ employe.localisation }}</td>
         <td>
           <div
             class="btn-group d-flex justify-content-around"
             role="group"
             aria-label="Basic mixed styles example"
           >
-            <a class="pointer" style="color: green"
+            <a
+              (click)="
+                openFullScreen(print);
+                selectedEmploye = employe;
+                getEmployeAssets()
+              "
+              class="pointer"
+              style="color: green"
               ><i class="fa-solid fa-eye"></i
             ></a>
-            <a class="pointer" style="color: orange"
+            <a
+              class="pointer"
+              style="color: orange"
+              (click)="selectedEmploye = employe; setUpdateForm(); open(update)"
               ><i class="fa-solid fa-pen"></i
             ></a>
-            <a class="pointer" style="color: red"
-              ><i class="fa-solid fa-trash"></i
-            ></a>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>09842759</td>
-        <td>ICHRAK</td>
-        <td>ICHRAk</td>
-        <td>Direction</td>
-        <td>1 er</td>
-        <td>56</td>
-        <td>Directeur</td>
-        <td>TUNIS</td>
-        <td>TUNIS</td>
-        <td>
-          <div
-            class="btn-group d-flex justify-content-around"
-            role="group"
-            aria-label="Basic mixed styles example"
-          >
-            <a class="pointer" style="color: green"
-              ><i class="fa-solid fa-eye"></i
-            ></a>
-            <a class="pointer" style="color: orange"
-              ><i class="fa-solid fa-pen"></i
-            ></a>
-            <a class="pointer" style="color: red"
-              ><i class="fa-solid fa-trash"></i
-            ></a>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>09842759</td>
-        <td>ICHRAK</td>
-        <td>ICHRAk</td>
-        <td>Direction</td>
-        <td>1 er</td>
-        <td>56</td>
-        <td>Directeur</td>
-        <td>TUNIS</td>
-        <td>TUNIS</td>
-        <td>
-          <div
-            class="btn-group d-flex justify-content-around"
-            role="group"
-            aria-label="Basic mixed styles example"
-          >
-            <a class="pointer" style="color: green"
-              ><i class="fa-solid fa-eye"></i
-            ></a>
-            <a class="pointer" style="color: orange"
-              ><i class="fa-solid fa-pen"></i
-            ></a>
-            <a class="pointer" style="color: red"
-              ><i class="fa-solid fa-trash"></i
-            ></a>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>09842759</td>
-        <td>ICHRAK</td>
-        <td>ICHRAk</td>
-        <td>Direction</td>
-        <td>1 er</td>
-        <td>56</td>
-        <td>Directeur</td>
-        <td>TUNIS</td>
-        <td>TUNIS</td>
-        <td>
-          <div
-            class="btn-group d-flex justify-content-around"
-            role="group"
-            aria-label="Basic mixed styles example"
-          >
-            <a class="pointer" style="color: green"
-              ><i class="fa-solid fa-eye"></i
-            ></a>
-            <a class="pointer" style="color: orange"
-              ><i class="fa-solid fa-pen"></i
-            ></a>
-            <a class="pointer" style="color: red"
-              ><i class="fa-solid fa-trash"></i
-            ></a>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>09842759</td>
-        <td>ICHRAK</td>
-        <td>ICHRAk</td>
-        <td>Direction</td>
-        <td>1 er</td>
-        <td>56</td>
-        <td>Directeur</td>
-        <td>TUNIS</td>
-        <td>TUNIS</td>
-        <td>
-          <div
-            class="btn-group d-flex justify-content-around"
-            role="group"
-            aria-label="Basic mixed styles example"
-          >
-            <a class="pointer" style="color: green"
-              ><i class="fa-solid fa-eye"></i
-            ></a>
-            <a class="pointer" style="color: orange"
-              ><i class="fa-solid fa-pen"></i
-            ></a>
-            <a class="pointer" style="color: red"
-              ><i class="fa-solid fa-trash"></i
-            ></a>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>09842759</td>
-        <td>ICHRAK</td>
-        <td>ICHRAk</td>
-        <td>Direction</td>
-        <td>1 er</td>
-        <td>56</td>
-        <td>Directeur</td>
-        <td>TUNIS</td>
-        <td>TUNIS</td>
-        <td>
-          <div
-            class="btn-group d-flex justify-content-around"
-            role="group"
-            aria-label="Basic mixed styles example"
-          >
-            <a class="pointer" style="color: green"
-              ><i class="fa-solid fa-eye"></i
-            ></a>
-            <a class="pointer" style="color: orange"
-              ><i class="fa-solid fa-pen"></i
-            ></a>
-            <a class="pointer" style="color: red"
-              ><i class="fa-solid fa-trash"></i
-            ></a>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>09842759</td>
-        <td>ICHRAK</td>
-        <td>ICHRAk</td>
-        <td>Direction</td>
-        <td>1 er</td>
-        <td>56</td>
-        <td>Directeur</td>
-        <td>TUNIS</td>
-        <td>TUNIS</td>
-        <td>
-          <div
-            class="btn-group d-flex justify-content-around"
-            role="group"
-            aria-label="Basic mixed styles example"
-          >
-            <a class="pointer" style="color: green"
-              ><i class="fa-solid fa-eye"></i
-            ></a>
-            <a class="pointer" style="color: orange"
-              ><i class="fa-solid fa-pen"></i
-            ></a>
-            <a class="pointer" style="color: red"
-              ><i class="fa-solid fa-trash"></i
-            ></a>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>09842759</td>
-        <td>ICHRAK</td>
-        <td>ICHRAk</td>
-        <td>Direction</td>
-        <td>1 er</td>
-        <td>56</td>
-        <td>Directeur</td>
-        <td>TUNIS</td>
-        <td>TUNIS</td>
-        <td>
-          <div
-            class="btn-group d-flex justify-content-around"
-            role="group"
-            aria-label="Basic mixed styles example"
-          >
-            <a class="pointer" style="color: green"
-              ><i class="fa-solid fa-eye"></i
-            ></a>
-            <a class="pointer" style="color: orange"
-              ><i class="fa-solid fa-pen"></i
-            ></a>
-            <a class="pointer" style="color: red"
+            <a
+              (click)="selectedEmploye = employe; open(delcontent)"
+              class="pointer"
+              style="color: red"
               ><i class="fa-solid fa-trash"></i
             ></a>
           </div>
@@ -317,59 +163,79 @@
     ></button>
   </div>
   <div class="modal-body">
-    <form>
+    <form [formGroup]="employeForm">
       <input
         class="form-control mb-2"
         type="text"
         placeholder="CIN"
+        formControlName="cin"
         aria-label="default input example"
       />
       <input
         class="form-control mb-2"
         type="text"
         placeholder="Nom"
+        formControlName="nom"
         aria-label="default input example"
       />
-      <input
-        class="form-control mb-2"
-        type="text"
-        placeholder="Prenom"
-        aria-label="default input example"
-      />
-      <select class="form-select mb-2" aria-label="Default select example">
-        <option selected>Structure</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select
+        class="form-select mb-2"
+        formControlName="structure"
+        aria-label="Default select example"
+      >
+        <option selected value="" disabled>Structure</option>
+        <option
+          *ngFor="let structure of _general.structures"
+          [value]="structure"
+        >
+          {{ structure }}
+        </option>
       </select>
       <input
         class="form-control mb-2"
         type="text"
         placeholder="Etage"
+        formControlName="etage"
         aria-label="default input example"
       />
       <input
         class="form-control mb-2"
         type="text"
         placeholder="Num Bureau"
+        formControlName="bureau"
         aria-label="default input example"
       />
       <input
         class="form-control mb-2"
         type="text"
         placeholder="Poste"
+        formControlName="poste"
         aria-label="default input example"
       />
-      <select class="form-select mb-2" aria-label="Default select example">
-        <option selected>Région</option>
-        <option *ngFor="let location of _general.locations" value="1">
+      <select
+        class="form-select mb-2"
+        formControlName="region"
+        aria-label="Default select example"
+      >
+        <option selected value="" disabled>Région</option>
+        <option
+          *ngFor="let location of _general.locations"
+          [value]="location.name"
+        >
           {{ location.name }}
         </option>
       </select>
-      <select class="form-select mb-2" aria-label="Default select example">
-        <option selected>Localisation</option>
-        <option *ngFor="let location of _general.locations" value="1">
-          {{ location.name }}
+      <select
+        class="form-select mb-2"
+        formControlName="localisation"
+        aria-label="Default select example"
+      >
+        <option selected value="" disabled>Localisation</option>
+        <option
+          *ngFor="let localisation of _general.localisations"
+          [value]="localisation"
+        >
+          {{ localisation }}
         </option>
       </select>
     </form>
@@ -378,9 +244,329 @@
     <button
       type="button"
       class="btn btn-outline-dark"
-      (click)="modal.close('Save click')"
+      (click)="modal.close('Save click'); createEmploye()"
     >
       Ajouter
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #update let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Modifier {{ selectedEmploye.nom }}
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="employeForm">
+      <input
+        class="form-control mb-2"
+        type="text"
+        placeholder="CIN"
+        formControlName="cin"
+        aria-label="default input example"
+      />
+      <input
+        class="form-control mb-2"
+        type="text"
+        placeholder="Nom"
+        formControlName="nom"
+        aria-label="default input example"
+      />
+      <select
+        class="form-select mb-2"
+        formControlName="structure"
+        aria-label="Default select example"
+      >
+        <option selected value="" disabled>Structure</option>
+        <option
+          *ngFor="let structure of _general.structures"
+          [value]="structure"
+        >
+          {{ structure }}
+        </option>
+      </select>
+      <input
+        class="form-control mb-2"
+        type="text"
+        placeholder="Etage"
+        formControlName="etage"
+        aria-label="default input example"
+      />
+      <input
+        class="form-control mb-2"
+        type="text"
+        placeholder="Num Bureau"
+        formControlName="bureau"
+        aria-label="default input example"
+      />
+      <input
+        class="form-control mb-2"
+        type="text"
+        placeholder="Poste"
+        formControlName="poste"
+        aria-label="default input example"
+      />
+      <select
+        class="form-select mb-2"
+        formControlName="region"
+        aria-label="Default select example"
+      >
+        <option selected value="" disabled>Région</option>
+        <option
+          *ngFor="let location of _general.locations"
+          [value]="location.name"
+        >
+          {{ location.name }}
+        </option>
+      </select>
+      <select
+        class="form-select mb-2"
+        formControlName="localisation"
+        aria-label="Default select example"
+      >
+        <option selected value="" disabled>Localisation</option>
+        <option
+          *ngFor="let localisation of _general.localisations"
+          [value]="localisation"
+        >
+          {{ localisation }}
+        </option>
+      </select>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click'); updateEmploye()"
+    >
+      Modifier
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #delcontent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Supprimer {{ selectedEmploye.nom }}
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex justify-content-around">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="modal.dismiss('Cross click')"
+      >
+        annuler
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="deleteEmploye(modal)"
+      >
+        supprimer
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #print let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Imprimer fiche d'affectation Employe
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div id="printableDiv">
+      <div class="container-fluid">
+        <div
+          style="
+            height: 20vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid black;
+          "
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5f/API.jpg/280px-API.jpg"
+            style="width: 100px"
+            alt=""
+          />
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              align-items: center;
+              text-align: center;
+            "
+          >
+            <h5 style="font-family: 'Aoboshi One', serif">
+              Fiche d'affectation de materiel informatique
+            </h5>
+            <h5 style="font-family: 'Aoboshi One', serif">
+              Inventaire materiel informatique
+            </h5>
+          </div>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <span>{{_general.user.nom}} {{_general.user.prenom}}</span>
+            {{ currentDate | date : "fullDate" }}
+          </div>
+        </div>
+        <div
+          style="
+            height: 20vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid black;
+          "
+        >
+          <div class="container d-flex">
+            <div class="col-6">
+              <div class="d-flex" style="text-align: left">
+                <div class="col">
+                  Nom : <span>{{ employeAssets?.nom }}</span>
+                </div>
+              </div>
+              <div class="d-flex" style="text-align: left">
+                <div class="col">
+                  CIN : <span>{{ employeAssets?.cin }}</span>
+                </div>
+              </div>
+              <div class="d-flex" style="text-align: left">
+                <div class="col">
+                  Structure : <span>{{ employeAssets?.structure }}</span>
+                </div>
+              </div>
+
+              <div class="d-flex" style="text-align: left">
+                <div class="col">
+                  Etage : <span>{{ employeAssets?.etage }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex" style="text-align: left">
+                <div class="col">
+                  Bureau: <span>{{ employeAssets?.bureau }}</span>
+                </div>
+              </div>
+              <div class="d-flex" style="text-align: left">
+                <div class="col">
+                  Poste: <span>{{ employeAssets?.poste }}</span>
+                </div>
+              </div>
+              <div class="d-flex" style="text-align: left">
+                <div class="col">
+                  Region: <span>{{ employeAssets?.region }}</span>
+                </div>
+              </div> <div class="d-flex" style="text-align: left">
+                <div class="col">
+                  Localisation: <span>{{ employeAssets?.localisation }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            height: 20vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 3rem;
+          "
+        >
+          <table
+            *ngIf="employeAssets?.Assets.length > 0"
+            class="table table-hover table-bordered"
+          >
+            <thead>
+              <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Serie</th>
+                <th scope="col">Model</th>
+                <th scope="col">Type</th>
+                <th scope="col">Date d'achat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let asset of employeAssets?.Assets; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ asset.SN }}</td>
+                <td>{{ asset.model }}</td>
+                <td>{{ asset.type }}</td>
+                <td>{{ asset.buy_date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 3rem;
+          "
+        >
+          <div class="col-6">
+            <div class="d-flex">
+              <div class="col-12">Bénéficiaire : {{ employeAssets?.nom }}</div>
+            </div>
+            <div class="d-flex">
+              <div class="col-6">Signature :</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="col-12" style="text-align: right">
+              Visa Direction Informatique
+            </div>
+            <div class="col-12" style="text-align: left">.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click'); printDiv()"
+    >
+      Imprimer
     </button>
   </div>
 </ng-template>

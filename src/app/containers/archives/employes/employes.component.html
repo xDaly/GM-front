@@ -1,0 +1,49 @@
+<div class="m-5">
+   
+
+    <ngb-pagination
+      class="d-flex justify-content-center"
+      [collectionSize]="count"
+      [(page)]="filters.page"
+      [maxSize]="5"
+      [pageSize]="filters.size"
+      [boundaryLinks]="true"
+      (pageChange)="getEmployes()"
+    ></ngb-pagination>
+    <table
+      class="table table-striped"
+      style="border: 1px solid grey; border-radius: 50px"
+    >
+      <thead>
+        <tr>
+          <th scope="col">CIN</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Structure</th>
+          <th scope="col">Etage</th>
+          <th scope="col">Num Bureau</th>
+          <th scope="col">Poste</th>
+          <th scope="col">Région</th>
+          <th scope="col">Localisation</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employe of employes">
+          <td>{{ employe.cin }}</td>
+          <td>{{ employe.nom }}</td>
+          <td>{{ employe.structure }}</td>
+          <td>{{ employe.etage }}</td>
+          <td>{{ employe.bureau }}</td>
+          <td>{{ employe.poste }}</td>
+          <td>{{ employe.region }}</td>
+          <td>{{ employe.localisation }}</td>
+          <td>
+       <button class="btn btn-success" (click)="activate(employe.id)">Activer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
+  

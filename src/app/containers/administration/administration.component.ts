@@ -97,13 +97,12 @@ export class AdministrationComponent {
   }
 
   createGestionnaire() {
-    console.log(this.gestForm.controls['password'].errors);
     
-    // this._gestionnaire
-    //   .createGestionnaire(this.gestForm.value)
-    //   .subscribe((res: any) => {
-    //     this.gestionnaires.push(res.data);
-    //   });
+    this._gestionnaire
+      .createGestionnaire(this.gestForm.value)
+      .subscribe((res: any) => {
+        this.gestionnaires.push(res.data);
+      });
   }
   getGestionnaires() {
     this._gestionnaire.getGestionnaires().subscribe((res: any) => {

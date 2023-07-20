@@ -46,31 +46,39 @@
           class="nav-link active"
           aria-current="page"
           style="font-weight: 700; margin-right: 10px"
-          >Ichrak</a
+          >{{GeneralService.user.nom + ' ' + GeneralService.user.prenom}}</a
         >
-        <img
-          *ngIf="role == 1"
-          src="https://t4.ftcdn.net/jpg/00/65/10/47/360_F_65104718_x17a76wzWKIm3BlhA6uyYVkDs9982c6q.jpg"
-          class="img-thumbnail"
-          style="
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 100%;
-          "
-        />
-
-        <img
-          *ngIf="role == 2"
-          src="https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
-          class="img-thumbnail"
-          style="
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 100%;
-          "
-        />
+     
+        <div ngbDropdown class="d-inline-block">
+          <img
+          id="dropdownBasic1" ngbDropdownToggle
+            *ngIf="role == 1"
+            src="https://t4.ftcdn.net/jpg/00/65/10/47/360_F_65104718_x17a76wzWKIm3BlhA6uyYVkDs9982c6q.jpg"
+            class="img-thumbnail"
+            style="
+              width: 60px;
+              height: 60px;
+              object-fit: cover;
+              border-radius: 100%;
+            "
+          />
+  
+          <img
+          id="dropdownBasic1" ngbDropdownToggle
+            *ngIf="role == 2"
+            src="https://t4.ftcdn.net/jpg/02/27/45/09/360_F_227450952_KQCMShHPOPebUXklULsKsROk5AvN6H1H.jpg"
+            class="img-thumbnail"
+            style="
+              width: 60px;
+              height: 60px;
+              object-fit: cover;
+              border-radius: 100%;
+            "
+          />
+          <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic1"  style="left:-250% !important;position: absolute;">
+            <button ngbDropdownItem (click)="disconnect()">Se deconnecter</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>

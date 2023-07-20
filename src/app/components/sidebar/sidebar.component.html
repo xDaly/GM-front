@@ -27,20 +27,12 @@
     >
     <a
       class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
-      [routerLink]="['/routePath']"
+      [routerLink]="['/archive']"
       routerLinkActive="router-link-active"
       (click)="closeSidebar()"
       >
       <i class="fa-solid fa-magnifying-glass mx-2 fa-xl"></i>
-      <span class="text-visible" [class.hidden]="!isOpened">Suivi & traitement</span></a
-    >
-    <a
-      class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
-      [routerLink]="['/routePath']"
-      routerLinkActive="router-link-active"
-      (click)="closeSidebar()"
-      >
-      <i class="fa-solid fa-chart-pie mx-2 fa-xl"></i><span class="text-visible" [class.hidden]="!isOpened">Statistique</span></a
+      <span class="text-visible" [class.hidden]="!isOpened">Archive</span></a
     >
     <a
       class="d-flex justify-content-center align-items-center my-2 w-100 side-item"

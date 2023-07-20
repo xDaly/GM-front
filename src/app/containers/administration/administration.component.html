@@ -175,23 +175,22 @@
         password doit avoir des characteres minuscule
       </p>
       <p
-      class="text-danger"
-      *ngIf="
+        class="text-danger"
+        *ngIf="
   gestForm.controls.password.errors?.['containsSpecial'] && gestForm.controls.password.dirty
 "
-    >
-      password doit avoir des characteres speciaux
-    </p>
+      >
+        password doit avoir des characteres speciaux
+      </p>
     </form>
   </div>
   <div class="modal-footer">
     <button
       type="button"
       class="btn btn-outline-dark"
-      (click)="createGestionnaire()"
+      (click)="modal.close('Save click'); createGestionnaire()"
+      [disabled]="!gestForm.valid"
     >
-      <!-- [disabled]="!gestForm.valid || !gestForm.dirty" -->
-      <!-- modal.close('Save click');  -->
       Ajouter
     </button>
   </div>

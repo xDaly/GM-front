@@ -9,7 +9,7 @@ export class AssetService {
   constructor(private _http: HttpClient) {}
   createAsset(data: any) {
     return this._http.post(
-      environment.BASE_URL + 'asset/create-gestionnaire',
+      environment.BASE_URL + 'asset/create-asset',
       data
     );
   }
@@ -17,17 +17,25 @@ export class AssetService {
     return this._http.post(
       environment.BASE_URL +
         'asset?page=' +
-        filters.page +
-        'size=' +
+        (filters.page - 1) +
+        '&size=' +
         filters.size,
       filters
     );
   }
-  updateAsset(data: any) {
-    return this._http.post(
-      environment.BASE_URL + 'asset/create-gestionnaire',
+  updateAsset(data: any,id:string) {
+    return this._http.put(
+      environment.BASE_URL + 'asset/update-asset/'+id,
       data
     );
   }
-  deleteAsset() {}
+  historyAsset(id:string) {
+    return this._http.get(
+      environment.BASE_URL + 'asset/history-asset/'+id);
+  }
+  deleteAsset(id:string) {
+    return this._http.delete(
+      environment.BASE_URL + 'asset/delete-asset/'+id
+    );
+  }
 }

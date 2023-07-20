@@ -1,0 +1,58 @@
+<div class="m-5">
+
+
+    <ngb-pagination
+      class="d-flex justify-content-center"
+      [collectionSize]="count"
+      [(page)]="filters.page"
+      [maxSize]="5"
+      [pageSize]="filters.size"
+      [boundaryLinks]="true"
+      (pageChange)="getAssets()"
+    ></ngb-pagination>
+  
+    <table
+      class="table table-striped"
+      style="border: 1px solid grey; border-radius: 50px"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Num de Serie</th>
+          <th scope="col">Type</th>
+          <th scope="col">Modele</th>
+          <th scope="col">Date d'achat</th>
+          <th scope="col">Structure</th>
+          <th scope="col">Region</th>
+          <th scope="col">Localisation</th>
+          <th scope="col">Etat</th>
+          <th scope="col">Observation</th>
+          <th scope="col">Beneficere</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asset of assets">
+          <td>{{ asset.SN }}</td>
+          <td>{{ asset.type }}</td>
+          <td>{{ asset.model }}</td>
+          <td>{{ asset.buy_date }}</td>
+          <td>{{ asset.Employe.structure }}</td>
+          <td>{{ asset.Employe.region }}</td>
+          <td>{{ asset.Employe.localisation }}</td>
+          <td>{{ asset.etat }}</td>
+          <td
+            style="
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 1px;
+            "
+          >
+            {{ asset.observation }}
+          </td>
+          <td>{{ asset.Employe.nom }}</td>
+       
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

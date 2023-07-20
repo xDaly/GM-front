@@ -18,9 +18,14 @@ export class GestionnaireService {
     return this._http.get(
       environment.BASE_URL + 'gestionnaire/get-gestionnaires');
   }
+
+  getArchivedGestionnaires() {
+    return this._http.get(
+      environment.BASE_URL + 'gestionnaire/get-archived-gestionnaires');
+  }
   deleteGestionnaire(id:string){
-    return this._http.delete(
-      environment.BASE_URL + 'gestionnaire/'+id);
+    return this._http.put(environment.BASE_URL + 'gestionnaire/'+id,{archived:true})
+
   }
 
   updateGestionnaire(id:string,newData:any){

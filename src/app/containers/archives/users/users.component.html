@@ -1,0 +1,40 @@
+<div class="m-2">
+
+  
+    <table
+      class="table table-striped"
+      style="border: 1px solid grey; border-radius: 50px"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Mot de passe</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prenom</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let gestionnaire of gestionnaires">
+          <td>{{ gestionnaire.userName }}</td>
+          <td>{{ gestionnaire.password }}</td>
+          <td>{{ gestionnaire.Profil.nom }}</td>
+          <td>{{ gestionnaire.Profil.prenom }}</td>
+          <td>{{ gestionnaire.Profil.email }}</td>
+          <td>
+            <!-- <div
+              class="btn-group d-flex justify-content-around"
+              role="group"
+              aria-label="Basic mixed styles example"
+            >
+               <a class="pointer" style="color: green"
+                ><i class="fa-solid fa-eye"></i
+              ></a> 
+            </div> -->
+            <button class="btn btn-success" (click)="activate(gestionnaire.Profil.id)">Activer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
