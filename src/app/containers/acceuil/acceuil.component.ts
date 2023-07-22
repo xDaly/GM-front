@@ -56,6 +56,11 @@ export class AcceuilComponent {
   public typenpieChartLabels = this.assettypenlabels;
   public typenpieChartDatasets = [{ data: this.assettypencounts }];
 
+  assetregionlabels : any[] = []
+  assetregioncounts : any[] = []
+  public assetpieChartLabels = this.assetregionlabels;
+  public assetpieChartDatasets = [{ data: this.assetregioncounts }];
+
   //bars for regions
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -98,6 +103,11 @@ export class AcceuilComponent {
           this.regionlabels.push(e.region);
           this.regioncounts.push(e.count);
         });
+
+        response.data.assetsRegionData.map((e:any)=>{
+          this.assetregionlabels.push(e.region);
+          this.assetregioncounts.push(e.count);
+        })
         response.data.assetsLocalisationData.map((e: any) => {
           this.assetlocalisationlabels.push(e.localisation);
           this.assetlocalisationcounts.push(e.count);

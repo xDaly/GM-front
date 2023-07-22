@@ -32,7 +32,7 @@
       Materiels en panne
     </div>
   </div>
-  <!-- <div class="card m-2" style="background-color: #cc7684">
+  <div class="card m-2" style="background-color: #cc7684">
     <div
       class="card-body d-flex"
       style="justify-content: center; align-items: center; color: white"
@@ -42,7 +42,7 @@
       }}</span>
       Materiels déclassé
     </div>
-  </div> -->
+  </div> 
   <div class="card m-2 bg-success">
     <div
       class="card-body d-flex"
@@ -51,10 +51,10 @@
       <span style="font-size: xx-large; font-weight: 700; margin-right: 10px">{{
         counts?.employes
       }}</span>
-      Employes actif
+      Employes 
     </div>
   </div>
-  <div class="card m-2 bg-danger">
+  <!-- <div class="card m-2 bg-danger">
     <div
       class="card-body d-flex"
       style="justify-content: center; align-items: center; color: white"
@@ -64,7 +64,7 @@
       }}</span>
       Employes archivé
     </div>
-  </div>
+  </div> -->
 </div>
 
 
@@ -102,8 +102,8 @@
     <canvas
       baseChart
       [type]="'pie'"
-      [datasets]="pieChartDatasets"
-      [labels]="pieChartLabels"
+      [datasets]="assetpieChartDatasets"
+      [labels]="assetpieChartLabels"
       [options]="pieChartOptions"
       [legend]="pieChartLegend"
     >
