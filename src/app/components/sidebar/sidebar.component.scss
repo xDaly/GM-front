@@ -37,3 +37,13 @@
 .router-link-active{
   background:white;
 }
+
+.hiddenMenu{
+  transition: all 1s;
+  display: none !important;
+}
+
+.shownMenu{
+  transition: all 1s;
+  display: flex !important;
+}

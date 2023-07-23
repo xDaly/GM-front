@@ -133,7 +133,7 @@
 <div class="container d-flex" style="justify-content: space-around"></div>
 <div class="container d-flex" style="justify-content: space-around"></div>
 
-<div
+<!-- <div
   *ngIf="showCharts"
   class="container"
   style="
@@ -153,36 +153,5 @@
     [type]="barChartType"
   >
   </canvas>
-</div>
+</div> -->
 
-<div class="container d-flex" style="justify-content: space-around">
-  <canvas
-    baseChart
-    [type]="'pie'"
-    [datasets]="pieChartDatasets"
-    [labels]="pieChartLabels"
-    [options]="pieChartOptions"
-    [legend]="pieChartLegend"
-  >
-  </canvas>
-
-  <canvas
-    baseChart
-    [type]="'pie'"
-    [datasets]="pieChartDatasets"
-    [labels]="pieChartLabels"
-    [options]="pieChartOptions"
-    [legend]="pieChartLegend"
-  >
-  </canvas>
-
-  <canvas
-    baseChart
-    [type]="'pie'"
-    [datasets]="pieChartDatasets"
-    [labels]="pieChartLabels"
-    [options]="pieChartOptions"
-    [legend]="pieChartLegend"
-  >
-  </canvas>
-</div>

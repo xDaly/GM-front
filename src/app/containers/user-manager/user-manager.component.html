@@ -134,6 +134,7 @@
               ><i class="fa-solid fa-eye"></i
             ></a>
             <a
+            *ngIf="_general.user.role == 'admin'" 
               class="pointer"
               style="color: orange"
               (click)="selectedEmploye = employe; setUpdateForm(); open(update)"
