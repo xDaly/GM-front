@@ -10,6 +10,7 @@ import { AuthInterceptorService } from 'src/core/token.interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -21,6 +22,7 @@ registerLocaleData(localeFr, 'fr');
     ToastrModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,
+    NgbCollapseModule,
     NgbModule,
   ],
   providers: [
