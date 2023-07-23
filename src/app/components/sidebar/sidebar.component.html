@@ -3,9 +3,10 @@
   [class.open]="isOpened"
   (mouseenter)="isOpened = true"
   (mouseleave)="isOpened = false"
+  [ngClass]="shown ? 'min-height' : 'height'"
+
 >
   <div
-
     style="
       height: 100%;
       display: flex;
@@ -26,7 +27,7 @@
       </div>
     </div>
 
-    <div ngbAccordionItem>
+    <div ngbAccordionItem (shown)="shown = true" (hidden)="shown = false" >
       <div
         class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
         style="cursor: pointer"
@@ -67,7 +68,7 @@
       </div>
     </div>
 
-    <div ngbAccordionItem>
+    <div ngbAccordionItem (shown)="shown = true" (hidden)="shown = false">
       <div
         class="d-flex justify-content-center align-items-center my-2 w-100 side-item"
         style="cursor: pointer"
@@ -122,6 +123,8 @@
     </div>
 
     <div
+    *ngIf="GeneralService.user.role == 'admin'" 
+
       ngbAccordionItem
       [routerLink]="['/administration']"
       routerLinkActive="router-link-active"

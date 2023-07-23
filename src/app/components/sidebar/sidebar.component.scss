@@ -1,6 +1,12 @@
+.height{
+  height: calc(100vh - 71px);
+}
+.min-height{
+  min-height: calc(100vh - 71px);
+}
 .sidebar {
   width: 100px;
-  height: calc(100vh - 71px);
+
   background-color: #EFF3F8;
   z-index: 10;
   transition: all 0.3s;

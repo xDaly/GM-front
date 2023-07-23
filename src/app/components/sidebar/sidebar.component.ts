@@ -16,7 +16,7 @@ export class SidebarComponent {
   isOpened: any;
 
 
-  public consultation  : boolean = false
+  public shown  : boolean 
   constructor(public GeneralService: GeneralService) {
     this.GeneralService.sideBarOpened.subscribe((isOpened:boolean)=>{
       this.isOpened = isOpened
